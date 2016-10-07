@@ -1,13 +1,13 @@
 {
-  "name": "MobilePlant",
+  "name": "backbonejs-study",
   "authors": [
-    "Miracom Inc."
+    "b-cuts"
   ],
-  "description": "MobilePlant",
+  "description": "",
   "main": "app/main.js",
   "moduleType": [],
-  "license": "Commercial",
-  "homepage": "http://miracom.co.kr",
+  "license": "MIT",
+  "homepage": "https://github.com/b-cuts/backbonejs-study",
   "ignore": [
     "**/.*",
     "node_modules",
