@@ -1,6 +1,11 @@
-define(['jquery'], function () {
+require([
+	'backbone',
+    'router'
+], function (Backbone, Router) {
     $(function () {
         "use strict";
-        console.log("Hello World!");
+        new Router();   
+        Backbone.history.start();  
     });
 });
+    
