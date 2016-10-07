@@ -11,7 +11,7 @@ define([
             '*filter': 'setFilter'
         },
         home: function() {
-            new AppView();
+            new AppView().render();;
         },
         setFilter: function (param) {
             Common.TodoFilter = param || '';
