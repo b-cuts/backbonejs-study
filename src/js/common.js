@@ -4,7 +4,7 @@
 define([], function () {
     return {
         // Which filter are we using?
-        TodoFilter: '', // empty, active, completed
+        TodoFilter: '', // ?filter=all, ?filter=active, ?filter=completed
 
         // What is the enter key constant?
         ENTER_KEY: 13,

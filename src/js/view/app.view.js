@@ -31,7 +31,7 @@ define([
             var remaining = TodoCollection.remaining().length;
 
             if (TodoCollection.length) {
-                this.$('#main').show();
+                this.$main.show();
                 this.$footer.show();
 
                 this.$footer.html(this.template({
@@ -69,19 +69,15 @@ define([
         filterAll: function () {
             TodoCollection.each(this.filterOne, this);
         },
-        newAttributes: function () {
-            return {
-                title: this.$input.val().trim(),
-                order: TodoCollection.nextOrder(),
-                completed: false
-            };
-        },
         createOnEnter: function (e) {
             if (e.which !== Common.ENTER_KEY || !this.$input.val().trim()) {
                 return;
             }
-
-            TodoCollection.create(this.newAttributes());
+            TodoCollection.create({
+                title: this.$input.val().trim(),
+                order: TodoCollection.nextOrder(),
+                completed: false
+            });
             this.$input.val('');
         },
         clearCompleted: function () {
