@@ -1,25 +1,34 @@
 define([
     'backbone',
     'collection/todo.collection',
-    'view/todo.view',
+    'view/item.view',
     'text!tpl/stats.html',
     'common'
 ], function (Backbone, TodoCollection, TodoView, statsTemplate, Common) {
     'use strict';
     return Backbone.View.extend({
+        //collection: new TodoCollection(),
+        collection: TodoCollection,
         initialize: function () {
-            this.input = $('#new-todo');
-            this.todoList = $('#todo-list');
+            this.input = this.$('#new-todo');
+            this.todoList = this.$('#todo-list');
 
             //this.listenTo(TodoCollection, 'add', this.addTodo);
             //this.listenTo(TodoCollection, 'reset', this.addAll);
 
-            TodoCollection.on('add', this.addTodo, this);
-            TodoCollection.on('reset', this.addAll, this);
+            //TodoCollection.on('add', this.addTodo, this);
+            //TodoCollection.on('reset', this.addAll, this);
 
+            this.collection.on('add', this.addTodo, this);
+            this.collection.on('reset', this.addAll, this);
+            /*
             TodoCollection.fetch({
                 reset: true
             });
+            */
+            this.collection.fetch({
+                reset: true
+            })
         },
         el: '#todoapp',
         //$el: $('#todoapp'),
@@ -34,10 +43,16 @@ define([
             if (e.which !== Common.ENTER_KEY || !this.input.val().trim()) {
                 return;
             }
-
+            /*
             TodoCollection.create({
                 title: this.input.val().trim(),
                 order: TodoCollection.nextOrder(),
+                completed: false
+            });
+            */
+            this.collection.create({
+                title: this.input.val().trim(),
+                order: this.collection.nextOrder(),
                 completed: false
             });
             this.input.val('');
@@ -59,8 +74,9 @@ define([
         },
         addAll: function(collection) {
             this.todoList.empty();
-            TodoCollection.each(this.addTodo, this);
             //_.each(TodoCollection.models, this.addTodo, this);
+            //TodoCollection.each(this.addTodo, this);
+            this.collection.each(this.addTodo, this);
         }
     });
 });

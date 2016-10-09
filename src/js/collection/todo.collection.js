@@ -4,6 +4,7 @@ define([
 ], function (Localstorage, TodoModel) {
     'use strict';
     var TodoCollection = Backbone.Collection.extend({
+    //return Backbone.Collection.extend({
         model: TodoModel,
         localStorage: new Localstorage('todos-backbone'),
         completed: function () {
